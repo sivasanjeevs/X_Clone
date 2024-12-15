@@ -23,9 +23,7 @@ export const getUserprofile = async (req, res) => {
 export const getSuggestedUsers = async (req, res) => {
     try{
         const userId = req.user.id;
-
         const usersFollowedByMe = await User.findById(userId).select("following");
-
         const users = await User.aggregate([
             {
                 $match: {
@@ -107,7 +105,7 @@ export const updateUser = async (req,res) => {
         if(!user) return res.status(404).json({error: 'User not found'});
 
         if((!currentPassword && newPassword )||(!newPassword && currentPassword)){
-            return res.status(400).json({error: 'Current password or new password required'});
+            return res.status(400).json({error: 'Both Current password and new password required'});
         }
 
         if(currentPassword && newPassword){
@@ -117,7 +115,7 @@ export const updateUser = async (req,res) => {
                 return res.status(400).json({error: 'password must be at least 6 characters'});
             }
 
-            const salt = await bcrypt.generateSalt(10);
+            const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(newPassword, salt);
         }
         if(profileImg){
