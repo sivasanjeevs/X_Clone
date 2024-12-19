@@ -17,7 +17,7 @@ const postSchema = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
-            // default: [] // added extra default
+            default: [] // added extra default
     }],
     comments: [
         {
