@@ -131,7 +131,7 @@ const Post = ({ post }) => {
 						<img src={postOwner.profileImg || "/avatar-placeholder.png"} />
 					</Link>
 				</div>
-				<div className='flex flex-col flex-1'>
+				<div className='flex flex-col flex-1 text-white'>
 					<div className='flex gap-2 items-center'>
 						<Link to={`/profile/${postOwner.username}`} className='font-bold'>
 							{postOwner.fullName}
@@ -142,9 +142,9 @@ const Post = ({ post }) => {
 							<span>{formattedDate}</span>
 						</span>
 						{isMyPost && (
-							<span className='flex justify-end flex-1'>
+							<span className=' flex justify-end flex-1'>
 								{!isDeleting && (
-									<FaTrash className='cursor-pointer hover:text-red-500' onClick={handleDeletePost} />
+									<FaTrash className='cursor-pointer text-white hover:text-red-500' onClick={handleDeletePost} />
 								)}
 
 								{isDeleting && <LoadingSpinner size='sm' />}
