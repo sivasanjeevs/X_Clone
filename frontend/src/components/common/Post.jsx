@@ -126,11 +126,15 @@ const Post = ({ post }) => {
 	return (
 		<>
 			<div className='flex gap-2 items-start p-4 border-b border-gray-700'>
-				<div className="avatar">
-    				<Link to={`/profile/${postOwner.username}`} className="w-6 h-6 rounded-full overflow-hidden border-2 border-gray-500">
-        				<img src={postOwner.profileImg || "/avatar-placeholder.png"} alt="profile" />
-    				</Link>
-				</div>
+			<div className="avatar">
+				<Link to={`/profile/${postOwner.username}`} className="block w-8 h-8 rounded-full overflow-hidden">
+				<img
+					src={postOwner.profileImg || "/avatar-placeholder.png"}
+					alt={`${postOwner.username}'s profile`}
+					className="w-full h-full object-cover"
+				/>
+				</Link>
+			</div>
 
 				<div className='flex flex-col flex-1 text-white'>
 					<div className='flex gap-2 items-center'>
