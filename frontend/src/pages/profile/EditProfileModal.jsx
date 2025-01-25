@@ -34,93 +34,126 @@ const EditProfileModal = ({ authUser }) => {
 
 	return (
 		<>
+			{/* Trigger Button */}
 			<button
-				className='btn btn-outline rounded-full btn-sm'
+				className="btn btn-outline rounded-full btn-sm hover:bg-gray-100 hover:shadow-md transition"
 				onClick={() => document.getElementById("edit_profile_modal").showModal()}
 			>
-				Edit profile
+				Edit Profile
 			</button>
-			<dialog id='edit_profile_modal' className='modal'>
-				<div className='modal-box border rounded-md border-gray-700 shadow-md'>
-					<h3 className='font-bold text-lg my-3'>Update Profile</h3>
+
+			{/* Modal */}
+			<dialog
+				id="edit_profile_modal"
+				className="modal bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center"
+				aria-label="Edit Profile Modal"
+			>
+				<div className="modal-box max-w-xl bg-white p-6 rounded-lg border border-gray-300 shadow-lg">
+					<h3 className="text-xl font-semibold text-gray-800 mb-4">Update Profile</h3>
+
+					{/* Form */}
 					<form
-						className='flex flex-col gap-4'
+						className="space-y-4"
 						onSubmit={(e) => {
 							e.preventDefault();
 							updateProfile(formData);
 						}}
 					>
-						<div className='flex flex-wrap gap-2'>
+						{/* Full Name and Username */}
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 							<input
-								type='text'
-								placeholder='Full Name'
-								className='flex-1 input border border-gray-700 rounded p-2 input-md'
+								type="text"
+								placeholder="Full Name"
+								className="input w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none transition"
 								value={formData.fullName}
-								name='fullName'
+								name="fullName"
 								onChange={handleInputChange}
+								aria-label="Full Name"
 							/>
 							<input
-								type='text'
-								placeholder='Username'
-								className='flex-1 input border border-gray-700 rounded p-2 input-md'
+								type="text"
+								placeholder="Username"
+								className="input w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none transition"
 								value={formData.username}
-								name='username'
+								name="username"
 								onChange={handleInputChange}
+								aria-label="Username"
 							/>
 						</div>
-						<div className='flex flex-wrap gap-2'>
+
+						{/* Email and Bio */}
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 							<input
-								type='email'
-								placeholder='Email'
-								className='flex-1 input border border-gray-700 rounded p-2 input-md'
+								type="email"
+								placeholder="Email"
+								className="input w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none transition"
 								value={formData.email}
-								name='email'
+								name="email"
 								onChange={handleInputChange}
+								aria-label="Email"
 							/>
 							<textarea
-								placeholder='Bio'
-								className='flex-1 input border border-gray-700 rounded p-2 input-md'
+								placeholder="Bio"
+								className="input w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none transition resize-none"
 								value={formData.bio}
-								name='bio'
+								name="bio"
 								onChange={handleInputChange}
+								aria-label="Bio"
 							/>
 						</div>
-						<div className='flex flex-wrap gap-2'>
+
+						{/* Password Fields */}
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 							<input
-								type='password'
-								placeholder='Current Password'
-								className='flex-1 input border border-gray-700 rounded p-2 input-md'
+								type="password"
+								placeholder="Current Password"
+								className="input w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none transition"
 								value={formData.currentPassword}
-								name='currentPassword'
+								name="currentPassword"
 								onChange={handleInputChange}
+								aria-label="Current Password"
 							/>
 							<input
-								type='password'
-								placeholder='New Password'
-								className='flex-1 input border border-gray-700 rounded p-2 input-md'
+								type="password"
+								placeholder="New Password"
+								className="input w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none transition"
 								value={formData.newPassword}
-								name='newPassword'
+								name="newPassword"
 								onChange={handleInputChange}
+								aria-label="New Password"
 							/>
 						</div>
+
+						{/* Website/Link */}
 						<input
-							type='text'
-							placeholder='Link'
-							className='flex-1 input border border-gray-700 rounded p-2 input-md'
+							type="text"
+							placeholder="Website/Link"
+							className="input w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none transition"
 							value={formData.link}
-							name='link'
+							name="link"
 							onChange={handleInputChange}
+							aria-label="Website/Link"
 						/>
-						<button className='btn btn-primary rounded-full btn-sm text-white'>
+
+						{/* Update Button */}
+						<button
+							className="w-full btn bg-primary text-white rounded-full py-2 hover:bg-primary-dark transition"
+							disabled={isUpdatingProfile}
+						>
 							{isUpdatingProfile ? "Updating..." : "Update"}
 						</button>
 					</form>
 				</div>
-				<form method='dialog' className='modal-backdrop'>
-					<button className='outline-none'>close</button>
+
+				{/* Modal Close */}
+				<form method="dialog" className="modal-backdrop">
+					<button className="btn bg-white text-gray-700 border border-gray-300 rounded-full hover:bg-gray-100 transition">
+						Close
+					</button>
 				</form>
 			</dialog>
 		</>
 	);
 };
+
 export default EditProfileModal;
