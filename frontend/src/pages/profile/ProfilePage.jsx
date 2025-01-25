@@ -75,7 +75,7 @@ const ProfilePage = () => {
 
 	return (
 		<>
-			<div className='flex-[4_4_0]  border-r border-gray-700 min-h-screen '>
+			<div className='text-white flex-[4_4_0]  border-r border-gray-700 min-h-screen '>
 				{/* HEADER */}
 				{(isLoading || isRefetching) && <ProfileHeaderSkeleton />}
 				{!isLoading && !isRefetching && !user && <p className='text-center text-lg mt-4'>User not found</p>}
@@ -84,7 +84,7 @@ const ProfilePage = () => {
 						<>
 							<div className='flex gap-10 px-4 py-2 items-center'>
 								<Link to='/'>
-									<FaArrowLeft className='w-4 h-4' />
+									<FaArrowLeft className=' text-white fill-white w-4 h-4' />
 								</Link>
 								<div className='flex flex-col'>
 									<p className='font-bold text-lg'>{user?.fullName}</p>
