@@ -56,7 +56,7 @@ const LoginPage = () => {
 	};
 
 	return (
-		<div className='max-w-screen-xl mx-auto flex h-screen'>
+		<div className='max-w-screen-xl mx-auto flex h-screen bg-black'>
 			<div className='flex-1 hidden lg:flex items-center  justify-center'>
 				<XSvg className='lg:w-2/3 fill-white' />
 			</div>
@@ -95,7 +95,7 @@ const LoginPage = () => {
 				<div className='flex flex-col gap-2 mt-4'>
 					<p className='text-white text-lg'>{"Don't"} have an account?</p>
 					<Link to='/signup'>
-						<button className='btn rounded-full btn-primary text-white btn-outline w-full'>Sign up</button>
+						<button className='btn rounded-full bg-black text-white btn-outline w-full'>Sign up</button>
 					</Link>
 				</div>
 			</div>
