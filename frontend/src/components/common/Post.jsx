@@ -220,7 +220,7 @@ const Post = ({ post }) => {
                               />
                             </div>
                           </div>
-                          <div className="flex flex-col w-full">
+                          <div className=" text-black flex flex-col w-full">
                             <div className="flex items-center gap-2">
                               <span className="font-bold text-sm text-white">
                                 {comment.user.fullName}
@@ -249,7 +249,7 @@ const Post = ({ post }) => {
                       onChange={(e) => setComment(e.target.value)}
                     />
                     <button
-                      className="btn btn-primary rounded-full btn-sm text-white px-4"
+                      className="bg-black rounded-full text-white px-4"
                       disabled={isCommenting || comment.trim() === ""}
                     >
                       {isCommenting ? <LoadingSpinner size="md" /> : "Post"}
