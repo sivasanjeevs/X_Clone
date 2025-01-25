@@ -65,9 +65,14 @@ const CreatePost = () => {
 	return (
 		<div className=' text-white flex p-4 items-start gap-4 border-b border-gray-700'>
 			<div className='avatar'>
-				<div className='w-8 rounded-full'>
-					<img src={authUser.profileImg || "/avatar-placeholder.png"} />
-				</div>
+			<div className="w-8 h-8 rounded-full overflow-hidden">
+				<img
+					src={authUser.profileImg || "/avatar-placeholder.png"}
+					alt="Profile"
+					className="w-full h-full object-cover"
+				/>
+</div>
+
 			</div>
 			<form className='flex flex-col gap-2 w-full' onSubmit={handleSubmit}>
 				<textarea
@@ -98,7 +103,7 @@ const CreatePost = () => {
 						<BsEmojiSmileFill className='fill-white text-white w-5 h-5 cursor-pointer' />
 					</div>
 					<input type='file' accept='image/*' hidden ref={imgRef} onChange={handleImgChange} />
-					<button className='bg-black rounded-full sm text-white px-4'>
+					<button className='bg-black rounded sm text-white px-4'>
 						{isPending ? "Posting..." : "Post"}
 					</button>
 				</div>
