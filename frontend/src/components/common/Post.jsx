@@ -207,7 +207,7 @@ const Post = ({ post }) => {
                       post.comments.map((comment) => (
                         <div
                           key={comment._id}
-                          className="flex gap-3 items-start border-b pb-2 border-gray-600"
+                          className=" text-white flex gap-3 items-start border-b pb-2 border-gray-600"
                         >
                           <div className="avatar">
                             <div className="w-8 rounded-full">
