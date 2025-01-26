@@ -90,7 +90,7 @@ const CreatePost = () => {
 								imgRef.current.value = null;
 							}}
 						/>
-						<img src={img} className='w-full mx-auto h-72 object-contain rounded-full' />
+						<img src={img} className='w-full mx-auto h-72 object-contain' />
 					</div>
 				)}
 
@@ -103,7 +103,7 @@ const CreatePost = () => {
 						<BsEmojiSmileFill className='fill-white text-white w-5 h-5 cursor-pointer' />
 					</div>
 					<input type='file' accept='image/*' hidden ref={imgRef} onChange={handleImgChange} />
-					<button className='bg-black rounded sm text-white px-4'>
+					<button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'>
 						{isPending ? "Posting..." : "Post"}
 					</button>
 				</div>

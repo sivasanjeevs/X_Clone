@@ -175,7 +175,7 @@ const Post = ({ post }) => {
             )}
           </div>
 
-          <div className="flex justify-between mt-3">
+          <div className=" text-black flex justify-between mt-3">
             <div className="flex gap-4 items-center w-2/3 justify-between">
               <div
                 className="flex gap-1 items-center cursor-pointer group"
