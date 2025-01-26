@@ -207,18 +207,17 @@ const Post = ({ post }) => {
                       post.comments.map((comment) => (
                         <div
                           key={comment._id}
-                          className=" text-white flex gap-3 items-start border-b pb-2 border-gray-600"
+                          className=" text-black flex gap-3 items-start border-b pb-2 border-gray-600"
                         >
                           <div className="avatar">
-                            <div className="w-8 rounded-full">
-                              <img
-                                src={
-                                  comment.user.profileImg ||
-                                  "/avatar-placeholder.png"
-                                }
-                                alt=""
-                              />
-                            </div>
+                          <div className="w-8 h-8 rounded-full overflow-hidden">
+                            <img
+                              src={comment.user.profileImg || "/avatar-placeholder.png"}
+                              alt="Profile"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+
                           </div>
                           <div className=" text-black flex flex-col w-full">
                             <div className="flex items-center gap-2">
