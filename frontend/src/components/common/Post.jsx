@@ -195,7 +195,19 @@ const Post = ({ post }) => {
                 id={`comments_modal${post._id}`}
                 className="modal bg-black text-white border-none outline-none max-w-lg mx-auto"
               >
-                <div className="modal-box bg-black text-white rounded-2xl border border-gray-700 p-6 space-y-6">
+                <div className="modal-box bg-black text-white rounded-2xl border border-gray-700 p-6 space-y-6 relative">
+                  {/* Close Button */}
+                  <button
+                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-200 text-lg"
+                    onClick={() =>
+                      document
+                        .getElementById(`comments_modal${post._id}`)
+                        .close()
+                    }
+                  >
+                    &times;
+                  </button>
+
                   <h3 className="font-bold text-lg mb-4">COMMENTS</h3>
 
                   <div className="flex flex-col gap-4 max-h-60 overflow-y-auto">
@@ -257,6 +269,8 @@ const Post = ({ post }) => {
                     </button>
                   </form>
                 </div>
+
+                {/* Close Modal by Clicking Outside */}
                 <form method="dialog" className="modal-backdrop">
                   <button className="outline-none text-white">close</button>
                 </form>
