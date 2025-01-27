@@ -69,7 +69,7 @@ const LoginPage = () => {
                         <MdOutlineMail className="text-gray-600" />
                         <input
                             type="text"
-                            className="grow bg-transparent outline-none placeholder-gray-500"
+                            className="grow bg-transparent outline-none placeholder-gray-500 text-black"
                             placeholder="Username"
                             name="username"
                             onChange={handleInputChange}
@@ -81,7 +81,7 @@ const LoginPage = () => {
                         <MdPassword className="text-gray-600" />
                         <input
                             type="password"
-                            className="grow bg-transparent outline-none placeholder-gray-500"
+                            className="grow bg-transparent outline-none placeholder-gray-500 text-black"
                             placeholder="Password"
                             name="password"
                             onChange={handleInputChange}
@@ -96,7 +96,7 @@ const LoginPage = () => {
                 <div className="flex flex-col gap-4 mt-6 items-center">
                     <p className="text-white text-lg">{"Don't"} have an account?</p>
                     <Link to="/signup">
-                        <button className="bg-transparent rounded-full text-blue-500 border border-blue-500 w-full">
+                        <button className="flex gap-4 items-center flex-col w-80 bg-blue-500 font-bold rounded-full text-white py-2">
                             Sign up
                         </button>
                     </Link>

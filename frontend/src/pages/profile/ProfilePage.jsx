@@ -122,13 +122,13 @@ const ProfilePage = () => {
 									onChange={(e) => handleImgChange(e, "profileImg")}
 								/>
 								{/* USER AVATAR */}
-								<div className='w-32 h-32 rounded-full relative group/avatar overflow-hidden'>
+								<div className='w-32 h-32 top-5 left-5  rounded-full relative group/avatar overflow-hidden'>
 									<img
 										src={profileImg || user?.profileImg || "/avatar-placeholder.png"}
 										alt='Profile'
 										className='w-full h-full object-cover'
 									/>
-									<div className='absolute top-2 right-2 p-1 bg-gray-900 rounded-full overflow-hidden group-hover/avatar:opacity-100 opacity-0 cursor-pointer'>
+									<div className='absolute top-3 right-3 p-1 bg-gray-900 rounded-full overflow-hidden group-hover/avatar:opacity-100 opacity-0 cursor-pointer'>
 										{isMyProfile && (
 										<MdEdit
 										className='w-4 h-4 text-white'

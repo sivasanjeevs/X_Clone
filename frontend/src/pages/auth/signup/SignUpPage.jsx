@@ -7,8 +7,8 @@ import { MdOutlineMail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { MdPassword } from "react-icons/md";
 import { MdDriveFileRenameOutline } from "react-icons/md";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 
 const SignUpPage = () => {
     const [formData, setFormData] = useState({
@@ -20,7 +20,12 @@ const SignUpPage = () => {
 
     const queryClient = useQueryClient();
 
-    const { mutate, isError, isPending, error } = useMutation({
+    const {
+        mutate: signUpMutation,
+        isPending,
+        isError,
+        error,
+    } = useMutation({
         mutationFn: async ({ email, username, fullName, password }) => {
             try {
                 const res = await fetch("/api/auth/signup", {
@@ -32,23 +37,23 @@ const SignUpPage = () => {
                 });
 
                 const data = await res.json();
-                if (!res.ok) throw new Error(data.error || "Failed to create account");
-                console.log(data);
-                return data;
+
+                if (!res.ok) {
+                    throw new Error(data.error || "Failed to create account");
+                }
             } catch (error) {
-                console.error(error);
-                throw error;
+                throw new Error(error);
             }
         },
         onSuccess: () => {
-            toast.success("Account created successfully");
+            // Refetch the authUser
             queryClient.invalidateQueries({ queryKey: ["authUser"] });
         },
     });
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // page won't reload
-        mutate(formData);
+        e.preventDefault();
+        signUpMutation(formData);
     };
 
     const handleInputChange = (e) => {
@@ -56,69 +61,73 @@ const SignUpPage = () => {
     };
 
     return (
-        <div className='max-w-screen-xl mx-auto flex h-screen px-10 bg-black'>
-            <div className='flex-1 hidden lg:flex items-center justify-center'>
-                <XSvg className='lg:w-2/3 fill-white' />
+        <div className="max-w-screen-xl mx-auto flex h-screen bg-black">
+            <div className="flex-1 hidden lg:flex items-center justify-center">
+                <XSvg className="lg:w-2/3 fill-white" />
             </div>
-            <div className='flex-1 flex flex-col justify-center items-center'>
-                <form className='lg:w-2/3 mx-auto md:mx-20 flex gap-4 flex-col' onSubmit={handleSubmit}>
-                    <XSvg className='w-24 lg:hidden fill-white' />
-                    <h1 className='text-4xl font-extrabold text-white'>Join today.</h1>
-                    <label className='input input-bordered rounded flex items-center gap-2'>
-                        <MdOutlineMail />
+            <div className="flex-1 flex flex-col justify-center items-center">
+                <form className="flex gap-6 flex-col w-80" onSubmit={handleSubmit}>
+                    <XSvg className="w-24 lg:hidden fill-white" />
+                    <h1 className="text-4xl font-extrabold text-white text-center">Join us.</h1>
+
+                    <label className="input flex items-center gap-2 bg-gray-200 rounded focus-within:outline outline-blue-500 p-2">
+                        <MdOutlineMail className="text-gray-600" />
                         <input
-                            type='email'
-                            className='grow bg-gray-800 text-white p-2 rounded'
-                            placeholder='Email'
-                            name='email'
+                            type="email"
+                            className="grow bg-transparent outline-none placeholder-gray-500 text-black"
+                            placeholder="Email"
+                            name="email"
                             onChange={handleInputChange}
                             value={formData.email}
                         />
                     </label>
-                    <div className='flex gap-4 flex-wrap'>
-                        <label className='input input-bordered rounded flex items-center gap-2 flex-1'>
-                            <FaUser />
-                            <input
-                                type='text'
-                                className='grow bg-gray-800 text-white p-2 rounded'
-                                placeholder='Username'
-                                name='username'
-                                onChange={handleInputChange}
-                                value={formData.username}
-                            />
-                        </label>
-                        <label className='input input-bordered rounded flex items-center gap-2 flex-1'>
-                            <MdDriveFileRenameOutline />
-                            <input
-                                type='text'
-                                className='grow bg-gray-800 text-white p-2 rounded'
-                                placeholder='Full Name'
-                                name='fullName'
-                                onChange={handleInputChange}
-                                value={formData.fullName}
-                            />
-                        </label>
-                    </div>
-                    <label className='input input-bordered rounded flex items-center gap-2'>
-                        <MdPassword />
+
+                    <label className="input flex items-center gap-2 bg-gray-200 rounded focus-within:outline outline-blue-500 p-2">
+                        <FaUser className="text-gray-600" />
                         <input
-                            type='password'
-                            className='grow bg-gray-800 text-white p-2 rounded'
-                            placeholder='Password'
-                            name='password'
+                            type="text"
+                            className="grow bg-transparent outline-none placeholder-gray-500 text-black"
+                            placeholder="Username"
+                            name="username"
+                            onChange={handleInputChange}
+                            value={formData.username}
+                        />
+                    </label>
+
+                    <label className="input flex items-center gap-2 bg-gray-200 rounded focus-within:outline outline-blue-500 p-2">
+                        <MdDriveFileRenameOutline className="text-gray-600" />
+                        <input
+                            type="text"
+                            className="grow bg-transparent outline-none placeholder-gray-500 text-black"
+                            placeholder="Full Name"
+                            name="fullName"
+                            onChange={handleInputChange}
+                            value={formData.fullName}
+                        />
+                    </label>
+
+                    <label className="input flex items-center gap-2 bg-gray-200 rounded focus-within:outline outline-blue-500 p-2">
+                        <MdPassword className="text-gray-600" />
+                        <input
+                            type="password"
+                            className="grow bg-transparent outline-none placeholder-gray-50 text-black"
+                            placeholder="Password"
+                            name="password"
                             onChange={handleInputChange}
                             value={formData.password}
                         />
                     </label>
-                    <button className='btn rounded-full bg-blue-500 hover:bg-blue-600 text-white'>
+
+                    <button className="bg-blue-500 font-bold rounded-full text-white py-2">
                         {isPending ? "Loading..." : "Sign up"}
                     </button>
-                    {isError && <p className='text-red-500'>{error.message}</p>}
+                    {isError && <p className="text-red-500 text-center">{error.message}</p>}
                 </form>
-                <div className='flex flex-col lg:w-2/3 gap-2 mt-4'>
-                    <p className='text-white text-lg'>Already have an account?</p>
-                    <Link to='/login'>
-                        <button className='btn rounded-full border-2 border-white text-white w-full hover:bg-gray-700'>
+
+                <div className="flex flex-col gap-4 mt-6 items-center">
+                    <p className="text-white text-lg">Already have an account?</p>
+                    <Link to="/login">
+                        <button className="flex gap-4 items-center flex-col w-80 bg-blue-500 font-bold rounded-full text-white py-2">
                             Sign in
                         </button>
                     </Link>
@@ -127,4 +136,5 @@ const SignUpPage = () => {
         </div>
     );
 };
+
 export default SignUpPage;

@@ -195,8 +195,20 @@ const Post = ({ post }) => {
                 id={`comments_modal${post._id}`}
                 className="modal border-none outline-none max-w-lg mx-auto"
               >
-                <div className="modal-box rounded border border-gray-600">
-                  <h3 className="font-bold text-lg mb-4">COMMENTS</h3>
+                <div className="modal-box rounded border border-gray-600 bg-black relative">
+                  {/* Close Button */}
+                  <form method="dialog" className="absolute top-2 right-2">
+                    <button
+                      className="bg-blue-500 text-white font-bold rounded-full px-4 py-2"
+                      type="submit"
+                    >
+                      Close
+                    </button>
+                  </form>
+
+                  <h3 className="font-bold text-lg mb-4 text-white text-center">
+                    COMMENTS
+                  </h3>
 
                   <div className="flex flex-col gap-4 max-h-60 overflow-y-auto">
                     {post.comments.length === 0 ? (
@@ -207,19 +219,21 @@ const Post = ({ post }) => {
                       post.comments.map((comment) => (
                         <div
                           key={comment._id}
-                          className=" text-black flex gap-3 items-start border-b pb-2 border-gray-600"
+                          className="text-black flex gap-3 items-start border-b pb-2 border-gray-600"
                         >
                           <div className="avatar">
-                          <div className="w-8 h-8 rounded-full overflow-hidden">
-                            <img
-                              src={comment.user.profileImg || "/avatar-placeholder.png"}
-                              alt="Profile"
-                              className="w-full h-full object-cover"
-                            />
+                            <div className="w-8 h-8 rounded-full overflow-hidden">
+                              <img
+                                src={
+                                  comment.user.profileImg ||
+                                  "/avatar-placeholder.png"
+                                }
+                                alt="Profile"
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
                           </div>
-
-                          </div>
-                          <div className=" text-black flex flex-col w-full">
+                          <div className="text-black flex flex-col w-full">
                             <div className="flex items-center gap-2">
                               <span className="font-bold text-sm text-white">
                                 {comment.user.fullName}
@@ -242,22 +256,19 @@ const Post = ({ post }) => {
                     onSubmit={handlePostComment}
                   >
                     <textarea
-                      className="textarea w-full p-2 rounded text-md resize-none border border-gray-800 focus:outline-none focus:ring-1 focus:ring-sky-400"
+                      className=" text-white textarea w-full p-2 rounded text-md resize-none border border-gray-800 focus:outline-none focus:ring-1 focus:ring-sky-400"
                       placeholder="Add a comment..."
                       value={comment}
                       onChange={(e) => setComment(e.target.value)}
                     />
                     <button
-                      className="bg-black rounded-full text-white px-4"
+                      className="bg-blue-500 rounded-full text-white px-4 py-1"
                       disabled={isCommenting || comment.trim() === ""}
                     >
                       {isCommenting ? <LoadingSpinner size="md" /> : "Post"}
                     </button>
                   </form>
                 </div>
-                <form method="dialog" className="modal-backdrop">
-                  <button className="outline-none">close</button>
-                </form>
               </dialog>
 
               <div className="flex gap-1 items-center group cursor-pointer">
