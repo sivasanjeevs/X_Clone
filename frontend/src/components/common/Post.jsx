@@ -193,33 +193,21 @@ const Post = ({ post }) => {
 
               <dialog
                 id={`comments_modal${post._id}`}
-                className="modal border-none outline-none max-w-lg mx-auto"
+                className="modal bg-black text-white border-none outline-none max-w-lg mx-auto"
               >
-                <div className="modal-box rounded border border-gray-600 bg-black relative">
-                  {/* Close Button */}
-                  <form method="dialog" className="absolute top-2 right-2">
-                    <button
-                      className="bg-blue-500 text-white font-bold rounded-full px-4 py-2"
-                      type="submit"
-                    >
-                      Close
-                    </button>
-                  </form>
-
-                  <h3 className="font-bold text-lg mb-4 text-white text-center">
-                    COMMENTS
-                  </h3>
+                <div className="modal-box bg-black text-white rounded-2xl border border-gray-700 p-6 space-y-6">
+                  <h3 className="font-bold text-lg mb-4">COMMENTS</h3>
 
                   <div className="flex flex-col gap-4 max-h-60 overflow-y-auto">
                     {post.comments.length === 0 ? (
-                      <p className="text-sm text-slate-500 text-center">
+                      <p className="text-sm text-gray-400 text-center">
                         No comments yet 🤔 Be the first one 😉
                       </p>
                     ) : (
                       post.comments.map((comment) => (
                         <div
                           key={comment._id}
-                          className="text-black flex gap-3 items-start border-b pb-2 border-gray-600"
+                          className="flex gap-3 items-start border-b pb-2 border-gray-600"
                         >
                           <div className="avatar">
                             <div className="w-8 h-8 rounded-full overflow-hidden">
@@ -233,9 +221,9 @@ const Post = ({ post }) => {
                               />
                             </div>
                           </div>
-                          <div className="text-black flex flex-col w-full">
+                          <div className="flex flex-col w-full">
                             <div className="flex items-center gap-2">
-                              <span className="font-bold text-sm text-white">
+                              <span className="font-bold text-sm">
                                 {comment.user.fullName}
                               </span>
                               <span className="text-gray-500 text-xs">
@@ -252,23 +240,26 @@ const Post = ({ post }) => {
                   </div>
 
                   <form
-                    className="flex gap-2 items-center mt-4 border-t border-gray-600 pt-2"
+                    className="flex gap-3 items-center mt-4 border-t border-gray-700 pt-4"
                     onSubmit={handlePostComment}
                   >
                     <textarea
-                      className=" text-white textarea w-full p-2 rounded text-md resize-none border border-gray-800 focus:outline-none focus:ring-1 focus:ring-sky-400"
+                      className="textarea w-full p-3 rounded-xl text-md bg-black text-white resize-none border border-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
                       placeholder="Add a comment..."
                       value={comment}
                       onChange={(e) => setComment(e.target.value)}
                     />
                     <button
-                      className="bg-blue-500 rounded-full text-white px-4 py-1"
+                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2 text-sm font-semibold"
                       disabled={isCommenting || comment.trim() === ""}
                     >
                       {isCommenting ? <LoadingSpinner size="md" /> : "Post"}
                     </button>
                   </form>
                 </div>
+                <form method="dialog" className="modal-backdrop">
+                  <button className="outline-none text-white">close</button>
+                </form>
               </dialog>
 
               <div className="flex gap-1 items-center group cursor-pointer">
