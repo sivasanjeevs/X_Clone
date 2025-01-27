@@ -34,5 +34,5 @@ This is a **Twitter Clone** built using the **MERN stack** — MongoDB, Express.
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Yuvaneshwarran/Twitter-Clone
-   cd twitter-clone
+   git clone https://github.com/sivasanjeevs/X_Clone.git
+   cd X_Clone
